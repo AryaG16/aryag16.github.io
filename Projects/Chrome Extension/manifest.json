@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "version": "1.2",
+  "name": "Bookmark Mastery",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.jpg",
+    "permissions": [
+      "tabs"
+  ]
+  }
+}
