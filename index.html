@@ -104,7 +104,8 @@
                     <img src="images/chrome-extension.png" alt="Chrome Extension">
                     <div class="layer">
                         <h3>Chrome Extension</h3>
-                        <p>A chrome extension that helps in saving links to local storage and can access later(Recommended to test as Chrome Extension).</p>
+                        <p>A chrome extension that helps in saving links to local storage and can access
+                            later(Recommended to test as Chrome Extension).</p>
                         <div class="layer-links">
                             <a href="https://github.com/AryaG16/javascript-projects" target="_blank"><i
                                     class="fa-brands fa-github"></i></a>
@@ -113,6 +114,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="work">
+                    <img src="images/finartz.png" alt="FinartZ">
+                    <div class="layer">
+                        <h3>FinartZ</h3>
+                        <p>A Full Stack Blog website made with HTML, CSS, JS, mySQL and PHP. There are 2 users: Admin &
+                            Normal. You can check the static view below.</p>
+                        <div class="layer-links">
+                            <a href="https://github.com/AryaG16/Finartzz" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a>
+                            <a href="/Projects/FinartZ/index.html" target="_blank"><i
+                                    class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -181,16 +198,16 @@
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbz7fcT4zEl4Zlb02byUpRp9IywhD0OTj-6hX3zKo0Zl4BA3A_DtGz6LtSfBn_RhZ4pybw/exec'
         const form = document.forms['submit-to-google-sheet']
-        const msg=document.getElementById("msg");
+        const msg = document.getElementById("msg");
 
         form.addEventListener('submit', e => {
             e.preventDefault()
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
                     msg.innerHTML = "Message sent sucessfully!"
-                    setTimeout(function(){
-                        msg.innerHTML= ""
-                    },5000)
+                    setTimeout(function () {
+                        msg.innerHTML = ""
+                    }, 5000)
                     form.reset()
                 })
                 .catch(error => console.error('Error!', error.message))
