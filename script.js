@@ -174,6 +174,19 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  /* ---------- back to top ---------- */
+  function initToTop() {
+    var reduce =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".to-top").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+  }
+
   /* ---------- education / experience ---------- */
   function timelineItem(e) {
     return (
@@ -295,13 +308,8 @@
                 extIcon() +
                 "</a>";
           });
-          var typeLabel = TYPE_LABEL[p.type] || (p.type ? esc(p.type) : "");
           html +=
             '<article class="pub-item">' +
-            (typeLabel
-              ? '<span class="pub-type">' + typeLabel + "</span>"
-              : "<span></span>") +
-            '<div class="pub-body">' +
             '<h3 class="pub-title">' +
             esc(p.title) +
             "</h3>" +
@@ -310,7 +318,6 @@
               : "") +
             (p.venue ? '<p class="pub-venue">' + esc(p.venue) + "</p>" : "") +
             (links ? '<div class="pub-links">' + links + "</div>" : "") +
-            "</div>" +
             "</article>";
         });
       });
@@ -398,32 +405,34 @@
     );
   }
 
-  // OTHER: accordion item (native <details>), image inside the panel
-  function accordionItem(p) {
-    var media = "";
+  // OTHER: grid card, image on top (placeholder if missing), short description
+  function otherCard(p) {
+    var img;
     if (p.image && isSafeUrl(p.image)) {
-      media =
-        '<img class="acc-media" src="' +
+      img =
+        '<img class="card-media" src="' +
         esc(p.image) +
-        '" alt="" loading="lazy" onerror="this.remove();" />';
+        '" alt="" loading="lazy" onerror="this.classList.add(\'img-missing\');this.removeAttribute(\'src\');" />';
+    } else {
+      img = '<div class="card-media img-missing" aria-hidden="true"></div>';
     }
     return (
-      '<details class="acc" name="other-projects">' +
-      '<summary class="acc-head">' +
-      '<span class="acc-title">' +
+      '<article class="card">' +
+      img +
+      '<div class="card-body">' +
+      (p.status
+        ? '<span class="card-status">' + esc(p.status) + "</span>"
+        : "") +
+      "<h3>" +
       esc(p.title) +
-      "</span>" +
-      '<svg class="acc-chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-      "</summary>" +
-      '<div class="acc-panel">' +
-      media +
+      "</h3>" +
       (p.description
         ? '<p class="card-desc">' + esc(p.description) + "</p>"
         : "") +
       projTags(p.tags) +
       projLinks(p.links) +
       "</div>" +
-      "</details>"
+      "</article>"
     );
   }
 
@@ -442,7 +451,7 @@
       if (other) {
         other.innerHTML =
           Array.isArray(data.other) && data.other.length
-            ? data.other.map(accordionItem).join("")
+            ? data.other.map(otherCard).join("")
             : '<p class="empty">Add more projects to <code>projects.json</code> under "other".</p>';
       }
     });
@@ -481,6 +490,7 @@
   initTheme();
   initNav();
   setYear();
+  initToTop();
   revealSections();
 
   // Data-driven — each fetch is independent

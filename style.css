@@ -8,8 +8,8 @@
   --bg: #f7f8f9;
   --surface: #ffffff;
   --surface-2: #eef1f3;
-  --border: #e1e6ea;
-  --border-strong: #ccd4da;
+  --border: #d7dde2;
+  --border-strong: #b6c0c8;
   --text: #14181b;
   --text-2: #5a6670;
   --accent: #0f707c;
@@ -192,7 +192,7 @@ h3 {
 .nav {
   display: flex;
   gap: 1.6rem;
-  margin-left: auto;
+  align-items: center;
 }
 .nav a {
   color: var(--text-2);
@@ -228,6 +228,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: auto;
 }
 .theme-toggle,
 .menu-btn {
@@ -259,10 +260,15 @@ html[data-theme="dark"] .theme-toggle .i-sun {
 html[data-theme="dark"] .theme-toggle .i-moon {
   display: block;
 }
-.nav-cv {
-  margin-left: 1rem;
-  padding: 0.42rem 0.8rem;
-  font-size: 0.86rem;
+/* CV button — desktop copy in header actions (right of the toggle) */
+.header-actions .header-cv {
+  margin-left: 0.3rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.88rem;
+}
+/* CV button — mobile copy inside the collapsed menu (see media query) */
+.nav .nav-cv {
+  display: none;
 }
 .nav a.nav-cv {
   color: #fff;
@@ -559,30 +565,11 @@ html[data-theme="dark"] .btn-primary {
   margin-top: 0;
 }
 .pub-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.1rem 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--border);
 }
 .pub-item:last-child {
   border-bottom: none;
-}
-.pub-type {
-  grid-row: 1 / 2;
-  align-self: start;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-2);
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  padding: 0.15rem 0.45rem;
-  white-space: nowrap;
-}
-.pub-body {
-  grid-column: 2;
 }
 .pub-title {
   font-family: var(--font-serif);
@@ -777,67 +764,74 @@ html[data-theme="dark"] .btn-primary {
   margin: 0.35rem 0;
 }
 
-/* ---------- OTHER projects: accordion ---------- */
-.accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+/* ---------- OTHER projects: single toggle revealing the card grid ---------- */
+.proj-collapse {
+  margin: 0;
 }
-.acc {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  overflow: hidden;
-  transition: border-color 0.2s ease;
-}
-.acc[open] {
-  border-color: var(--border-strong);
-}
-.acc-head {
+.other-summary {
   list-style: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.2rem;
-  font-weight: 600;
-  color: var(--text);
+  margin: 2.4rem 0 1.2rem;
+  width: -moz-fit-content;
+  width: fit-content;
 }
-.acc-head::-webkit-details-marker {
+.other-summary::-webkit-details-marker {
   display: none;
 }
-.acc-head:hover {
+.other-summary-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+.other-summary:hover .other-label {
   color: var(--accent-strong);
 }
-.acc-title {
-  font-size: 1rem;
+.other-summary:hover .toggle-chev {
+  color: var(--accent-strong);
 }
-.acc-chev {
+.other-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.toggle-chev {
   color: var(--text-2);
-  flex-shrink: 0;
   transition: transform 0.2s ease;
 }
-.acc-head:hover .acc-chev {
-  color: var(--accent-strong);
-}
-.acc[open] .acc-chev {
+.proj-collapse[open] .toggle-chev {
   transform: rotate(180deg);
 }
-.acc-panel {
-  padding: 0.3rem 1.2rem 1.2rem;
+
+.cards-other {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
 }
-.acc-media {
+.card-media {
+  aspect-ratio: 16 / 9;
   width: 100%;
-  max-height: 220px;
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  margin: 0 0 0.9rem;
-  display: block;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
 }
-.acc-panel .card-desc {
-  margin-top: 0;
+.card-media.img-missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--surface-2),
+    var(--surface-2) 10px,
+    var(--surface) 10px,
+    var(--surface) 20px
+  );
+}
+.cards-other .card h3 {
+  font-size: 1rem;
 }
 
 /* ---------- blog (about page): stacked ---------- */
@@ -1018,8 +1012,12 @@ html[data-theme="dark"] .btn-primary {
     display: inline-flex;
   }
 
-  /* CV button drops into the collapsed menu as the last item */
+  /* desktop CV button hidden; menu CV button shown as the last item */
+  .header-actions .header-cv {
+    display: none;
+  }
   .nav a.nav-cv {
+    display: inline-flex;
     margin: 0.5rem clamp(1.1rem, 4vw, 2.2rem) 0.9rem;
     padding: 0.55rem 1rem;
     width: -moz-fit-content;
@@ -1051,6 +1049,9 @@ html[data-theme="dark"] .btn-primary {
   .ee-grid {
     grid-template-columns: 1fr;
   }
+  .cards-other {
+    grid-template-columns: 1fr;
+  }
 
   /* featured project image moves on top */
   .card-feature {
@@ -1064,6 +1065,12 @@ html[data-theme="dark"] .btn-primary {
   }
   .feature-media img {
     min-height: 0;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1024px) {
+  .cards-other {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
