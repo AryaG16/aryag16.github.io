@@ -11,7 +11,11 @@
         "Implemented and validated soft-RoCE (RDMA over Converged Ethernet) inside VMs hosted in Containerlab.",
         "Designed a host-driven load-balancing scheme by modifying RXE (Soft-RNIC) source-port allocation — replacing QP-hashing with custom allocation — improving flow distribution."
       ],
-      "links": { "paper": "", "repo": "", "demo": "" }
+      "links": {
+        "paper": "",
+        "repo": "https://github.com/AryaG16/scratch_dc_v2",
+        "demo": ""
+      }
     },
     {
       "title": "Deepfake Audio Detection on the FoR Dataset",
