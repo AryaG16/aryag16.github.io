@@ -1,6 +1,6 @@
 /* ============================================================
    Aryan Bhavsar — portfolio scripts (multi-page, config-driven)
-   Single source of truth: config.json (links + identity)
+   Single source of truth: config.json (links, identity, about)
    Data: education.json, experience.json, blog.json,
          publications.json, projects.json
    ============================================================ */
@@ -40,10 +40,11 @@
       });
   }
 
-  /* ---------- apply config (single source for links + identity) ---------- */
+  /* ---------- apply config (links, identity, about) ---------- */
   function applyConfig(config) {
     config = config || {};
     var links = config.links || {};
+    var about = config.about || {};
 
     // remove optional wrappers whose link is missing (e.g. secondary email)
     document.querySelectorAll("[data-optional]").forEach(function (el) {
@@ -70,14 +71,47 @@
       }
     });
 
-    // text fields (name, role, affiliation, emails)
+    // top-level text fields (name, role, affiliation) + email text
     document.querySelectorAll("[data-text]").forEach(function (el) {
       var k = el.getAttribute("data-text");
       var v = k === "email" || k === "emailSecondary" ? links[k] : config[k];
       if (v) el.textContent = v;
     });
 
-    // page <title> / brand already have sensible defaults; nothing else needed
+    // hero kicker = role · institute
+    var kicker = document.getElementById("hero-kicker");
+    if (kicker) {
+      var s = config.role || "";
+      if (config.institute) s += (s ? " · " : "") + config.institute;
+      if (s) kicker.textContent = s;
+    }
+
+    // about tagline (inline HTML allowed — it's your own config)
+    var tagline = document.getElementById("about-tagline");
+    if (tagline && about.tagline) tagline.innerHTML = about.tagline;
+
+    // about description: string or array of paragraphs (inline HTML allowed)
+    var desc = document.getElementById("about-description");
+    if (desc && about.description) {
+      var d = about.description;
+      desc.innerHTML = Array.isArray(d)
+        ? d
+            .map(function (p) {
+              return "<p>" + p + "</p>";
+            })
+            .join("")
+        : "<p>" + d + "</p>";
+    }
+
+    // about tags
+    var tags = document.getElementById("about-tags");
+    if (tags && Array.isArray(about.tags)) {
+      tags.innerHTML = about.tags
+        .map(function (t) {
+          return "<li>" + esc(t) + "</li>";
+        })
+        .join("");
+    }
   }
 
   /* ---------- theme ---------- */
@@ -135,7 +169,6 @@
     });
   }
 
-  /* ---------- year ---------- */
   function setYear() {
     var y = document.getElementById("year");
     if (y) y.textContent = new Date().getFullYear();
@@ -244,7 +277,6 @@
       var years = Object.keys(byYear).sort(function (a, b) {
         return (b === "—" ? -1 : b) - (a === "—" ? -1 : a);
       });
-
       var html = "";
       years.forEach(function (yr) {
         html += '<div class="pub-year">' + esc(yr) + "</div>";
@@ -253,7 +285,7 @@
           var pl = p.links || {};
           PUB_LINKS.forEach(function (pair) {
             var href = pl[pair[0]];
-            if (isSafeUrl(href)) {
+            if (isSafeUrl(href))
               links +=
                 '<a class="pub-link" href="' +
                 esc(href) +
@@ -262,7 +294,6 @@
                 " " +
                 extIcon() +
                 "</a>";
-            }
           });
           var typeLabel = TYPE_LABEL[p.type] || (p.type ? esc(p.type) : "");
           html +=
@@ -295,7 +326,80 @@
     ["slides", "Slides"],
     ["url", "Link"],
   ];
-  function projectCard(p) {
+
+  function projTags(tags) {
+    if (!Array.isArray(tags) || !tags.length) return "";
+    return (
+      '<div class="card-tags">' +
+      tags
+        .map(function (t) {
+          return '<span class="card-tag">' + esc(t) + "</span>";
+        })
+        .join("") +
+      "</div>"
+    );
+  }
+  function projLinks(pl) {
+    pl = pl || {};
+    var out = "";
+    PROJ_LINKS.forEach(function (pair) {
+      var h = pl[pair[0]];
+      if (isSafeUrl(h))
+        out +=
+          '<a class="card-link" href="' +
+          esc(h) +
+          '" target="_blank" rel="noopener">' +
+          esc(pair[1]) +
+          " " +
+          extIcon() +
+          "</a>";
+    });
+    return out ? '<div class="card-links">' + out + "</div>" : "";
+  }
+  function projDesc(d) {
+    if (Array.isArray(d))
+      return (
+        '<ul class="feature-points">' +
+        d
+          .map(function (x) {
+            return "<li>" + esc(x) + "</li>";
+          })
+          .join("") +
+        "</ul>"
+      );
+    if (d) return '<p class="card-desc">' + esc(d) + "</p>";
+    return "";
+  }
+
+  // FEATURED: full width, image left (only if present — no placeholder)
+  function featuredCard(p) {
+    var media = "";
+    if (p.image && isSafeUrl(p.image)) {
+      media =
+        '<div class="feature-media"><img src="' +
+        esc(p.image) +
+        '" alt="" loading="lazy" onerror="var m=this.closest(\'.feature-media\'); if(m) m.remove();" /></div>';
+    }
+    return (
+      '<article class="card card-feature">' +
+      media +
+      '<div class="card-body">' +
+      (p.status
+        ? '<span class="card-status">' + esc(p.status) + "</span>"
+        : "") +
+      "<h3>" +
+      esc(p.title) +
+      "</h3>" +
+      projDesc(p.description) +
+      projTags(p.tags) +
+      projLinks(p.links) +
+      "</div>" +
+      "</article>"
+    );
+  }
+
+  // OTHER: grid card, image on top (placeholder if missing), short description
+  function otherCard(p) {
     var img;
     if (p.image && isSafeUrl(p.image)) {
       img =
@@ -305,32 +409,6 @@
     } else {
       img = '<div class="card-media img-missing" aria-hidden="true"></div>';
     }
-    var tags = "";
-    if (Array.isArray(p.tags) && p.tags.length) {
-      tags =
-        '<div class="card-tags">' +
-        p.tags
-          .map(function (t) {
-            return '<span class="card-tag">' + esc(t) + "</span>";
-          })
-          .join("") +
-        "</div>";
-    }
-    var links = "";
-    var pl = p.links || {};
-    PROJ_LINKS.forEach(function (pair) {
-      var href = pl[pair[0]];
-      if (isSafeUrl(href)) {
-        links +=
-          '<a class="card-link" href="' +
-          esc(href) +
-          '" target="_blank" rel="noopener">' +
-          esc(pair[1]) +
-          " " +
-          extIcon() +
-          "</a>";
-      }
-    });
     return (
       '<article class="card">' +
       img +
@@ -344,36 +422,31 @@
       (p.description
         ? '<p class="card-desc">' + esc(p.description) + "</p>"
         : "") +
-      tags +
-      (links ? '<div class="card-links">' + links + "</div>" : "") +
+      projTags(p.tags) +
+      projLinks(p.links) +
       "</div>" +
       "</article>"
     );
   }
+
   function renderProjects() {
     var featured = document.getElementById("featured-grid");
     var other = document.getElementById("other-grid");
     if (!featured && !other) return;
     loadJSON("projects.json").then(function (data) {
       data = data || {};
-      function fill(host, arr, emptyMsg) {
-        if (!host) return;
-        if (!Array.isArray(arr) || arr.length === 0) {
-          host.innerHTML = '<p class="empty">' + emptyMsg + "</p>";
-          return;
-        }
-        host.innerHTML = arr.map(projectCard).join("");
+      if (featured) {
+        featured.innerHTML =
+          Array.isArray(data.featured) && data.featured.length
+            ? data.featured.map(featuredCard).join("")
+            : '<p class="empty">Add featured work to <code>projects.json</code> under "featured".</p>';
       }
-      fill(
-        featured,
-        data.featured,
-        'Add featured work to <code>projects.json</code> under "featured".',
-      );
-      fill(
-        other,
-        data.other,
-        'Add more projects to <code>projects.json</code> under "other".',
-      );
+      if (other) {
+        other.innerHTML =
+          Array.isArray(data.other) && data.other.length
+            ? data.other.map(otherCard).join("")
+            : '<p class="empty">Add more projects to <code>projects.json</code> under "other".</p>';
+      }
     });
   }
 

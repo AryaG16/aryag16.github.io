@@ -2,24 +2,35 @@
   "featured": [
     {
       "title": "RoCE-enabled L3EVPN over EVPN-VXLAN (Spine–Leaf Fabric)",
-      "description": "An EVPN-VXLAN L3 fabric with IRB and multiple VNIs in Containerlab on Nokia SR Linux. Implemented soft-RoCE inside containerized VMs and a host-driven load-balancing scheme by customizing RXE source-port allocation (replacing QP-hashing) for better flow distribution.",
       "status": "Research",
+      "image": "",
       "tags": ["EVPN-VXLAN", "RoCE / RDMA", "Containerlab", "Nokia SR Linux"],
-      "links": {}
+      "description": [
+        "Implemented EVPN-VXLAN L3 connectivity with multiple VNIs; validated host reachability across leafs and segmentation across VNIs.",
+        "Configured IRB (Integrated Routing & Bridging) for L2/L3 gateway functionality and validated inter-subnet reachability.",
+        "Implemented and validated soft-RoCE (RDMA over Converged Ethernet) inside VMs hosted in Containerlab.",
+        "Designed a host-driven load-balancing scheme by modifying RXE (Soft-RNIC) source-port allocation — replacing QP-hashing with custom allocation — improving flow distribution."
+      ],
+      "links": { "paper": "", "repo": "", "demo": "" }
     },
     {
       "title": "Deepfake Audio Detection on the FoR Dataset",
-      "description": "Compared statistical classifiers and an ensemble on the Fake-or-Real dataset; logistic regression gave the most balanced accuracy across real and fake audio, and SVM showed a clear real-audio bias.",
       "status": "Course project",
+      "image": "",
       "tags": ["Machine Learning", "Pattern Recognition"],
-      "links": {}
+      "description": [
+        "Compared multiple statistical classifiers and an ensemble on the Fake-or-Real (FoR) dataset.",
+        "Logistic regression gave the most balanced accuracy across real and fake audio.",
+        "SVM showed a clear bias toward real-audio detection."
+      ],
+      "links": { "paper": "", "repo": "", "demo": "" }
     }
   ],
   "other": [
     {
       "title": "ChatINC",
-      "description": "A realtime MERN-stack chat app with Tailwind CSS and Socket.IO, using token-based auth with cookies for sessions.",
-      "image": "images/ChatINC.png",
+      "description": "A realtime MERN-stack chat app with Tailwind CSS and Socket.IO; token-based auth with cookies.",
+      "image": "images/chatinc.png",
       "tags": ["MERN", "Socket.IO"],
       "links": {
         "repo": "https://github.com/AryaG16/chat-app",
