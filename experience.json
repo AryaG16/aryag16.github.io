@@ -1,0 +1,14 @@
+[
+  {
+    "period": "Sep 2024 — Present",
+    "title": "Research Scholar",
+    "org": "Indian Institute of Technology Indore",
+    "note": "RoCE-enabled EVPN-VXLAN fabrics in Containerlab (Nokia SR Linux); extending the testbed with an SDN controller and live telemetry."
+  },
+  {
+    "period": "Jan 2024 — Jun 2024",
+    "title": "Software Engineer Intern",
+    "org": "Jenex Technovation Pvt. Ltd.",
+    "note": "Cross-platform Flutter app; Node.js/MongoDB backend with token auth; Android Bluetooth for IoT."
+  }
+]

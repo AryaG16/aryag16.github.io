@@ -1,0 +1,50 @@
+{
+  "featured": [
+    {
+      "title": "RoCE-enabled L3EVPN over EVPN-VXLAN (Spine–Leaf Fabric)",
+      "description": "An EVPN-VXLAN L3 fabric with IRB and multiple VNIs in Containerlab on Nokia SR Linux. Implemented soft-RoCE inside containerized VMs and a host-driven load-balancing scheme by customizing RXE source-port allocation (replacing QP-hashing) for better flow distribution.",
+      "status": "Research",
+      "tags": ["EVPN-VXLAN", "RoCE / RDMA", "Containerlab", "Nokia SR Linux"],
+      "links": {}
+    },
+    {
+      "title": "Deepfake Audio Detection on the FoR Dataset",
+      "description": "Compared statistical classifiers and an ensemble on the Fake-or-Real dataset; logistic regression gave the most balanced accuracy across real and fake audio, and SVM showed a clear real-audio bias.",
+      "status": "Course project",
+      "tags": ["Machine Learning", "Pattern Recognition"],
+      "links": {}
+    }
+  ],
+  "other": [
+    {
+      "title": "ChatINC",
+      "description": "A realtime MERN-stack chat app with Tailwind CSS and Socket.IO, using token-based auth with cookies for sessions.",
+      "image": "images/ChatINC.png",
+      "tags": ["MERN", "Socket.IO"],
+      "links": {
+        "repo": "https://github.com/AryaG16/chat-app",
+        "demo": "https://chat-app-inc.onrender.com/login"
+      }
+    },
+    {
+      "title": "FinartZ",
+      "description": "A full-stack blog site (HTML, CSS, JS, MySQL, PHP) with admin and normal users.",
+      "image": "images/finartz.png",
+      "tags": ["PHP", "MySQL"],
+      "links": {
+        "repo": "https://github.com/AryaG16/Finartzz",
+        "demo": "Projects/FinartZ/index.html"
+      }
+    },
+    {
+      "title": "GameHub",
+      "description": "A game-discovery web app built with React + TypeScript and Chakra UI, using the RAWG API.",
+      "image": "images/gamehub.png",
+      "tags": ["React", "TypeScript"],
+      "links": {
+        "repo": "https://github.com/AryaG16/game-hub",
+        "demo": "https://game-hub-seven-jade.vercel.app/"
+      }
+    }
+  ]
+}

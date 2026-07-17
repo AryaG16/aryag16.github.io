@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publications — Aryan Bhavsar</title>
+    <meta name="description" content="Publications by Aryan Bhavsar." />
+    <script>try { var t = localStorage.getItem('ab-theme') || ((window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t); } catch (e) { }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <header class="site-header" id="top">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="home">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name" data-text="name">Aryan Bhavsar</span>
+            </a>
+            <nav class="nav" id="nav" aria-label="Primary">
+                <a href="index.html" data-page="index.html">About</a>
+                <a href="publications.html" data-page="publications.html">Publications</a>
+                <a href="projects.html" data-page="projects.html">Projects</a>
+                <a data-link="blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme"
+                    title="Switch theme">
+                    <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6" />
+                        <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                            <line x1="12" y1="2.5" x2="12" y2="5" />
+                            <line x1="12" y1="19" x2="12" y2="21.5" />
+                            <line x1="2.5" y1="12" x2="5" y2="12" />
+                            <line x1="19" y1="12" x2="21.5" y2="12" />
+                            <line x1="5.2" y1="5.2" x2="7" y2="7" />
+                            <line x1="17" y1="17" x2="18.8" y2="18.8" />
+                            <line x1="18.8" y1="5.2" x2="17" y2="7" />
+                            <line x1="7" y1="17" x2="5.2" y2="18.8" />
+                        </g>
+                    </svg>
+                    <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                        <path d="M20 14.2A8 8 0 0 1 9.8 4 8 8 0 1 0 20 14.2Z" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false"
+                    aria-controls="nav">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="page-hero">
+                <p class="eyebrow">publications</p>
+                <h1 class="page-title">Publications</h1>
+                <p class="page-sub">Peer-reviewed and preprint work. The complete, always-current list is on Google
+                    Scholar.</p>
+                <a class="btn btn-primary" data-link="scholar">
+                    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                        <path d="M12 3 1.5 8.5 12 14l8.5-4.6V15h1.5V8.5L12 3Z" fill="currentColor" />
+                        <path d="M6 12.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-3.8l-6 3.3-6-3.3Z" fill="currentColor" />
+                    </svg>
+                    View on Google Scholar
+                </a>
+            </header>
+
+            <section class="section-plain">
+                <div id="pub-list" class="pub-list" aria-live="polite">
+                    <p class="loading">Loading publications…</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer" id="contact">
+        <div class="container footer-inner">
+            <div class="footer-lead">
+                <p class="eyebrow">contact</p>
+                <h2 class="footer-title">Get in touch</h2>
+                <a class="footer-email" data-link="email" data-text="email">email</a>
+                <p class="footer-affil">
+                    <span data-optional="emailSecondary">Also: <a data-link="emailSecondary"
+                            data-text="emailSecondary">email</a><br></span>
+                    <span data-text="affiliation">Dept. of Computer Science &amp; Engineering · IIT Indore</span>
+                </p>
+            </div>
+            <div class="footer-links">
+                <a data-link="scholar">Scholar</a>
+                <a data-link="orcid">ORCID</a>
+                <a data-link="github">GitHub</a>
+                <a data-link="linkedin">LinkedIn</a>
+                <a data-link="leetcode">LeetCode</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© <span id="year"></span> <span data-text="name">Aryan Bhavsar</span></span>
+            <a href="#top" class="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
