@@ -1,14 +1,8 @@
 [
   {
-    "title": "[Example] Replace this with a real post title",
-    "url": "https://medium.com/",
-    "date": "2026",
-    "excerpt": "Optional one-line summary. Delete this example — or set blog.json to [] to hide the blog section entirely."
-  },
-  {
-    "title": "[Example] Another featured post",
-    "url": "https://medium.com/",
-    "date": "2026",
-    "excerpt": "The 'date' and 'excerpt' fields are optional. Only 'title' and 'url' are required."
+    "title": "",
+    "url": "",
+    "date": "",
+    "excerpt": ""
   }
 ]

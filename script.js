@@ -21,10 +21,10 @@
       .replace(/'/g, "&#39;");
   }
   function isSafeUrl(u) {
-    return (
-      typeof u === "string" &&
-      /^(https?:|mailto:|\.?\/|#|[\w./-]+\.(html|pdf))/i.test(u.trim())
-    );
+    if (typeof u !== "string") return false;
+    var s = u.trim();
+    if (!s) return false;
+    return !/^(javascript|data|vbscript|file):/i.test(s);
   }
   function extIcon() {
     return '<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
