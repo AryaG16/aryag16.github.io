@@ -20,7 +20,7 @@
     {
       "title": "Deepfake Audio Detection on the FoR Dataset",
       "status": "Course project",
-      "image": "images/me.jpeg",
+      "image": "",
       "tags": ["Machine Learning", "Pattern Recognition"],
       "description": [
         "Compared multiple statistical classifiers and an ensemble on the Fake-or-Real (FoR) dataset.",
