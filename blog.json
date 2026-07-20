@@ -1,8 +1,29 @@
 [
   {
-    "title": "",
-    "url": "",
-    "date": "",
-    "excerpt": ""
+    "title": "[Example] Understanding RDMA and RoCE",
+    "url": "https://medium.com/",
+    "date": "Jul 2026",
+    "excerpt": "A short intro to remote direct memory access and how RoCE brings it to Ethernet fabrics, and why it matters for AI training.",
+    "image": "images/chatinc.png",
+    "tags": ["Networking", "RDMA"],
+    "youtube": "https://youtube.com/"
+  },
+  {
+    "title": "[Example] Telemetry-driven congestion control",
+    "url": "https://medium.com/",
+    "date": "Jun 2026",
+    "excerpt": "Notes on using real-time network signals (latency, loss, utilization) to adapt routing and collective scheduling.",
+    "image": "",
+    "tags": ["Data-Center", "Telemetry"],
+    "youtube": "https://youtube.com/"
+  },
+  {
+    "title": "[Example] Getting started with Containerlab",
+    "url": "https://medium.com/",
+    "date": "May 2026",
+    "excerpt": "Spinning up EVPN-VXLAN topologies for quick experiments, step by step.",
+    "image": "",
+    "tags": ["Containerlab", "EVPN-VXLAN"],
+    "youtube": ""
   }
 ]

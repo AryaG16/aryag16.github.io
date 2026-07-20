@@ -29,6 +29,16 @@
   function extIcon() {
     return '<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   }
+  function ytIcon(size) {
+    size = size || 14;
+    return (
+      '<svg viewBox="0 0 24 24" width="' +
+      size +
+      '" height="' +
+      size +
+      '" aria-hidden="true"><path fill="currentColor" d="M23 12s0-3.1-.4-4.6a2.5 2.5 0 0 0-1.8-1.8C19.3 5.2 12 5.2 12 5.2s-7.3 0-8.8.4A2.5 2.5 0 0 0 1.4 7.4C1 8.9 1 12 1 12s0 3.1.4 4.6a2.5 2.5 0 0 0 1.8 1.8c1.5.4 8.8.4 8.8.4s7.3 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.1 23 12 23 12ZM9.8 15.3V8.7l5.7 3.3-5.7 3.3Z"/></svg>'
+    );
+  }
   function loadJSON(url) {
     return fetch(url, { cache: "no-cache" })
       .then(function (r) {
@@ -214,28 +224,43 @@
     });
   }
 
-  /* ---------- blog (about page) ---------- */
+  /* ---------- featured blog (about page) ---------- */
   function renderBlog() {
     var section = document.getElementById("blog-section");
     var host = document.getElementById("blog-list");
     if (!section || !host) return;
-    loadJSON("blog.json").then(function (posts) {
+    loadJSON("featured_blog.json").then(function (posts) {
       if (!Array.isArray(posts) || posts.length === 0) return; // stay hidden
       var html = posts
         .map(function (p) {
-          if (!p || !p.title || !isSafeUrl(p.url)) return "";
+          if (!p || !p.title) return "";
+          var titleHtml = isSafeUrl(p.url)
+            ? '<a class="post-title" href="' +
+              esc(p.url) +
+              '" target="_blank" rel="noopener">' +
+              esc(p.title) +
+              " " +
+              extIcon() +
+              "</a>"
+            : '<span class="post-title">' + esc(p.title) + "</span>";
+          var yt = isSafeUrl(p.youtube)
+            ? '<a class="post-yt" href="' +
+              esc(p.youtube) +
+              '" target="_blank" rel="noopener" aria-label="Watch on YouTube" title="Watch on YouTube">' +
+              ytIcon(13) +
+              " " +
+              extIcon() +
+              "</a>"
+            : "";
           return (
             '<article class="post">' +
             (p.date
               ? '<span class="post-date">' + esc(p.date) + "</span>"
               : "") +
-            '<a class="post-title" href="' +
-            esc(p.url) +
-            '" target="_blank" rel="noopener">' +
-            esc(p.title) +
-            " " +
-            extIcon() +
-            "</a>" +
+            '<div class="post-head">' +
+            titleHtml +
+            yt +
+            "</div>" +
             (p.excerpt
               ? '<p class="post-excerpt">' + esc(p.excerpt) + "</p>"
               : "") +
@@ -246,6 +271,65 @@
       if (!html) return;
       host.innerHTML = html;
       section.hidden = false;
+    });
+  }
+
+  /* ---------- blog page (all posts) ---------- */
+  function blogCard(p) {
+    var media = "";
+    if (p.image && isSafeUrl(p.image)) {
+      media =
+        '<div class="feature-media"><img src="' +
+        esc(p.image) +
+        '" alt="" loading="lazy" onerror="var m=this.closest(\'.feature-media\'); if(m) m.remove();" /></div>';
+    }
+    var links = "";
+    if (isSafeUrl(p.url))
+      links +=
+        '<a class="card-link" href="' +
+        esc(p.url) +
+        '" target="_blank" rel="noopener">Read blog ' +
+        extIcon() +
+        "</a>";
+    if (isSafeUrl(p.youtube))
+      links +=
+        '<a class="card-link" href="' +
+        esc(p.youtube) +
+        '" target="_blank" rel="noopener">' +
+        ytIcon(13) +
+        " Watch video " +
+        extIcon() +
+        "</a>";
+    links = links ? '<div class="card-links">' + links + "</div>" : "";
+    return (
+      '<article class="card card-feature">' +
+      media +
+      '<div class="card-body">' +
+      (p.date ? '<span class="post-date">' + esc(p.date) + "</span>" : "") +
+      "<h3>" +
+      esc(p.title) +
+      "</h3>" +
+      (p.excerpt ? '<p class="card-desc">' + esc(p.excerpt) + "</p>" : "") +
+      projTags(p.tags) +
+      links +
+      "</div>" +
+      "</article>"
+    );
+  }
+  function renderBlogPage() {
+    var host = document.getElementById("blog-page-list");
+    if (!host) return;
+    loadJSON("blog.json").then(function (posts) {
+      if (!Array.isArray(posts) || posts.length === 0) {
+        host.innerHTML =
+          '<p class="empty">No posts yet. Add entries to <code>blog.json</code> and they will appear here.</p>';
+        return;
+      }
+      host.innerHTML = posts
+        .map(function (p) {
+          return p && p.title ? blogCard(p) : "";
+        })
+        .join("");
     });
   }
 
@@ -498,6 +582,7 @@
   renderTimeline("education-list", "education.json");
   renderTimeline("experience-list", "experience.json");
   renderBlog();
+  renderBlogPage();
   renderPublications();
   renderProjects();
 })();

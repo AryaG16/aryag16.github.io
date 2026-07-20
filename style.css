@@ -884,6 +884,31 @@ html[data-theme="dark"] .btn-primary {
   font-size: 0.92rem;
   margin: 0.5rem 0 0;
 }
+.post-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+.post-yt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--accent-strong);
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  padding: 0.12rem 0.4rem;
+}
+.post-yt:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+.blog-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 .blog-more {
   margin-top: 1.5rem;
 }
@@ -931,6 +956,10 @@ html[data-theme="dark"] .btn-primary {
   font-size: 0.9rem;
   margin: 1rem 0 0;
   line-height: 1.75;
+}
+.footer-nav {
+  display: flex;
+  gap: 2.5rem;
 }
 .footer-links {
   display: flex;
