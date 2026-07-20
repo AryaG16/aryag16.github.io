@@ -43,7 +43,7 @@
     },
     {
       "title": "FinartZ",
-      "description": "A full-stack blog site (HTML, CSS, JS, MySQL, PHP) with admin and normal users.",
+      "description": "A full-stack blog site (HTML, CSS, JS, MySQL, PHP) with admin and normal users. (Only static frontend live)",
       "image": "images/finartz.png",
       "tags": ["PHP", "MySQL"],
       "links": {
