@@ -3,7 +3,7 @@
     "period": "June 2026 — Present",
     "title": "Next-Gen AI Systems & Infrastructure Research Intern",
     "org": "Marvell Technology",
-    "note": "Built a topology design tool for large-scale GPU-cluster fabrics, and currently implementing L2 flow-control protocols (LLR, CBFC) in the Ultra Ethernet htsim simulator."
+    "note": "Designed a GPU-cluster network fabric design tool for large-scale GPU-cluster fabrics, and currently implementing L2 flow-control protocols (LLR, CBFC) in htsim network simulator."
   },
   {
     "period": "Sep 2024 — Present",
