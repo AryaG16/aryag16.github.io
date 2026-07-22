@@ -5,28 +5,28 @@
   "affiliation": "Dept. of Computer Science & Engineering · IIT Indore",
 
   "about": {
-    "tagline": "Building <strong>networks for AI</strong> — telemetry-driven data-center networking for large-scale distributed training.",
-    "description": "I am a PhD scholar in Computer Science & Engineering at the Indian Institute of Technology Indore, advised by Dr. Sidharth Sharma (IIT Jodhpur) and Dr. Ayan Mondal (IIT Indore). My work sits at the intersection of AI/ML systems and data-center networking — building network-aware frameworks for large-scale distributed DNN training. I use real-time telemetry such as latency, loss, and link utilization to adapt routing, multicast, and collective scheduling, toward scalable and sustainable networks for AI.",
+    "tagline": "Building <strong>networks for AI</strong> — enabling scalable, efficient, and sustainable AI training and inference systems in large-scale data center and cloud environments.",
+    "description": "I am a second year PhD student in Computer Science and Engineering at IIT Indore, advised by Dr. Sidharth Sharma (IIT Jodhpur) and Dr. Ayan Mondal (IIT Indore), working at the intersection of AI/ML systems and data center networking. My interests center on the network fabric for large-scale distributed DNN training — high-performance transport and flow control over modern Ethernet-based RDMA fabrics (RoCE, Ultra Ethernet) — where communication increasingly bottlenecks training at scale.",
     "tags": [
       "Networks for AI",
       "Data-Center Networking",
-      "Distributed DNN Training",
-      "Network Telemetry",
-      "RDMA / RoCE",
-      "Collective Scheduling"
+      "Distributed AI Training",
+      "Network Simulation",
+      "RoCE & Ultra Ethernet",
+      "Congestion & Flow Control"
     ]
   },
 
   "links": {
     "scholar": "https://scholar.google.com/citations?user=gkApeaUAAAAJ&hl=en",
-    "orcid": "https://orcid.org/0000-0000-0000-0000",
-    "cv": "images/cv.pdf",
+    "orcid": "https://orcid.org/0009-0004-5835-794X",
+    "cv": "Aryan_Bhavsar_CV.pdf",
     "github": "https://github.com/AryaG16",
     "linkedin": "https://www.linkedin.com/in/aryanbhavsar-software-engineer/",
     "leetcode": "https://leetcode.com/u/viRus16/",
-    "youtube": "https://youtube.com",
-    "email": "aryan.bhavsar@hotmail.com",
+    "youtube": "",
+    "email": "aryanbhavsar161202@gmail.com",
     "emailSecondary": "phd2401201001@iiti.ac.in",
-    "blog": "https://medium.com/"
+    "blog": ""
   }
 }
