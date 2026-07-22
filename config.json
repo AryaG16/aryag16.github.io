@@ -6,7 +6,7 @@
 
   "about": {
     "tagline": "Building <strong>networks for AI</strong> — enabling scalable, efficient, and sustainable AI training and inference systems in large-scale data center and cloud environments.",
-    "description": "I am a second year PhD student in Computer Science and Engineering at IIT Indore, advised by <a href=\"https://home.iitj.ac.in/~sidharth/index.html\" target=\"_blank\" rel=\"noopener\">Dr. Sidharth Sharma (IIT Jodhpur)</a> and <a href=\"https://people.iiti.ac.in/~ayanm/research.html\" target=\"_blank\" rel=\"noopener\">Dr. Ayan Mondal (IIT Indore)</a>, working at the intersection of AI/ML systems and data center networking. My interests center on the network fabric for large-scale distributed DNN training — high-performance transport and flow control over modern Ethernet-based RDMA fabrics (RoCE, Ultra Ethernet) — where communication increasingly bottlenecks training at scale.",
+    "description": "I am a second year PhD student in Computer Science and Engineering at IIT Indore, advised by <a href=\"https://home.iitj.ac.in/~sidharth/index.html\" target=\"_blank\" rel=\"noopener\">Dr. Sidharth Sharma (IIT Jodhpur)</a> and <a href=\"https://people.iiti.ac.in/~ayanm/index.html\" target=\"_blank\" rel=\"noopener\">Dr. Ayan Mondal (IIT Indore)</a>, working at the intersection of AI/ML systems and data center networking. My interests center on the network fabric for large-scale distributed DNN training — high-performance transport and flow control over modern Ethernet-based RDMA fabrics (RoCE, Ultra Ethernet) — where communication increasingly bottlenecks training at scale.",
     "tags": [
       "Networks for AI",
       "Data-Center Networking",
