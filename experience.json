@@ -3,18 +3,18 @@
     "period": "June 2026 — Present",
     "title": "Next-Gen AI Systems & Infrastructure Research Intern",
     "org": "Marvell Technology",
-    "note": "Working on datacenter architecture and protocol designing."
+    "note": "Built a topology design tool for large-scale GPU-cluster fabrics, and currently implementing L2 flow-control protocols (LLR, CBFC) in the Ultra Ethernet htsim simulator."
   },
   {
     "period": "Sep 2024 — Present",
     "title": "Research Scholar",
     "org": "Indian Institute of Technology Indore",
-    "note": "RoCE-enabled EVPN-VXLAN fabrics in Containerlab (Nokia SR Linux); extending the testbed with an SDN controller and live telemetry."
+    "note": "High-performance transport and flow control over Ethernet-based RDMA fabrics (RoCE, Ultra Ethernet)."
   },
   {
     "period": "Jan 2024 — Jun 2024",
     "title": "Software Engineer Intern",
     "org": "Jenex Technovation Pvt. Ltd.",
-    "note": "Cross-platform Flutter app; Node.js/MongoDB backend with token auth; Android Bluetooth for IoT."
+    "note": "Full stack web, and cross-platform mobile application development."
   }
 ]
